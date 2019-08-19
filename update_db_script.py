@@ -571,7 +571,7 @@ def parse_sessions(inteldb, session, node_linked, student_node_row, student_atte
 	parsed_session['activity_chapter_code'] = node_linked['chapter_code']
 	parsed_session['activity_chapter_version'] = node_linked['chapter_version']
 	parsed_session['completed_on'] = str(student_attempt_row['completed_on'])
-	parsed_session['activity_reference'] = student_attempt_row.get('learnosity_activity_ref')
+	parsed_session['activity_reference'] = student_attempt_row['learnosity_activity_ref']
 	parsed_session['session_cleared'] = session_cleared_status(student_attempt_row, student_node_row)
 	parsed_session['completion'] = (float(total_num_responses_attempted)/parsed_session['num_questions'])
 	# print("DEBUG_FETCH", item_response_time_dict, date_session_dict)
@@ -586,6 +586,7 @@ def session_cleared_status(student_attempt_row, student_node_row):
 			return('Cleared')
 		else:
 			return('Not_Cleared')
+	
 
 def get_boolean_from_string(val):
 	if(val is None or pd.isnull(val)):
